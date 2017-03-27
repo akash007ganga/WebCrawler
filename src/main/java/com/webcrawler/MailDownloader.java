@@ -57,6 +57,7 @@ public class MailDownloader implements Downloader {
 
 				log.info("Download completed for : " + url);
 				log.info("Download remaining for[" + (absoluteURLList.size() - count) + "]items");
+				System.out.println("Download remaining for[" + (absoluteURLList.size() - count) + "]items");
 				count++;
 			}
 		} catch (IOException e) {

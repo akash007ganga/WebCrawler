@@ -32,6 +32,7 @@ public class WebCrawlController {
 
 	public static void main(String[] args) throws Exception {
 		log.info("Starting web crawling");
+		System.out.println("Starting web crawling");
 
 		long startTime = System.currentTimeMillis();
 		try {
@@ -42,6 +43,7 @@ public class WebCrawlController {
 			downloadRunner.download(absoluteURLList);
 			long endTime = System.currentTimeMillis();
 			log.info("Time taken in Crawling: " + (endTime - startTime) / 1000L);
+			System.out.println("Time taken in Crawling: " + (endTime - startTime) / 1000L);
 		} catch (Exception ex) {
 			log.error("Exception occurred while crawling: ", ex);
 		}
