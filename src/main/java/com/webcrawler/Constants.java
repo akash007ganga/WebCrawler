@@ -24,6 +24,9 @@
 
 package com.webcrawler;
 
+/**
+ * This class contains all the constants used in the program.
+ */
 public class Constants
 {
   public static final String CRAWLER_PROPERTIES_FILE_NAME = "crawler.properties";

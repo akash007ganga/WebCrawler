@@ -38,6 +38,10 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+/**
+ * Concrete implementation of the download service which will prepare absolute url address 
+ * for the requested downloadable resources
+ */
 public class MailCrawlerService implements WebCrawlerService {
 	private static final Logger log = Logger.getLogger(MailCrawlerService.class);
 	private String searchToken = "";
@@ -56,14 +60,32 @@ public class MailCrawlerService implements WebCrawlerService {
 		return getAbsoluteMailUrls(linkElements, searchToken);
 	}
 
+	/**
+	 * This method will create the filter criteria for the URL. 
+	 *
+	 * @param year the year
+	 * @return the should visit pattern
+	 */
 	public String getShouldVisitPattern(String year) {
 		return "(http://)?[a-zA-Z-._/]+" + year + "[0-9]{2}[.a-z/]+thread";
 	}
 
+	/**
+	 * Gets the regex mail url pattern.
+	 *
+	 * @param year the year
+	 * @return the regex mail url pattern
+	 */
 	public String getRegexMailUrlPattern(String year) {
 		return "(http://)?[a-zA-Z-._/]+" + year + "[0-9]{2}[.a-z]+/%[a-zA-Z0-9-._@%\\s]+";
 	}
 
+	/**
+	 * Gets the link filter predicate.
+	 *
+	 * @param shouldVisitPattern the should visit pattern
+	 * @return the link filter predicate
+	 */
 	private Predicate getLinkFilterPredicate(final String shouldVisitPattern) {
 		return new Predicate() {
 			public boolean evaluate(Object arg0) {
@@ -85,6 +107,14 @@ public class MailCrawlerService implements WebCrawlerService {
 		};
 	}
 
+	/**
+	 * Gets the absolute mail urls.
+	 *
+	 * @param linkElements the link elements
+	 * @param searchToken the search token
+	 * @return the absolute mail urls
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	private List<String> getAbsoluteMailUrls(Elements linkElements, String searchToken) throws IOException {
 		List<String> absoluteURLList = new ArrayList<String>();
 		List<Element> relativeURLList = new ArrayList<Element>();
@@ -103,6 +133,13 @@ public class MailCrawlerService implements WebCrawlerService {
 		return absoluteURLList;
 	}
 
+	/**
+	 * Gets the link elements.
+	 *
+	 * @param doc the doc
+	 * @param tagSelector the tag selector
+	 * @return the link elements
+	 */
 	private Elements getLinkElements(Document doc, String tagSelector) {
 		return doc.select(tagSelector);
 	}

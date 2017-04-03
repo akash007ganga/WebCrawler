@@ -43,6 +43,9 @@ public class MailDownloader implements Downloader {
 		this.downloadsDirectory = downloadsDirectory;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.webcrawler.Downloader#download(java.util.List)
+	 */
 	public void download(List<String> absoluteURLList) throws IOException {
 		try {
 			int count = 1;
@@ -66,6 +69,13 @@ public class MailDownloader implements Downloader {
 		}
 	}
 
+	/**
+	 * Read email and persist in file.
+	 *
+	 * @param url the url
+	 * @param file the file
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	private void ReadEmailAndPersistInFile(String url, File file) throws IOException {
 		OutputStream outputStream = new FileOutputStream(file);
 		try {

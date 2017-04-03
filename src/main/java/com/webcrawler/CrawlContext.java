@@ -31,6 +31,9 @@ import java.util.Properties;
 
 import org.apache.log4j.Logger;
 
+/**
+ * The Class is responsible for reading crawler.properties file and prepare the crawler accordingly.
+ */
 public class CrawlContext {
 	private static final Logger log = Logger.getLogger(CrawlContext.class);
 	private final Properties crawlerProperties;
